@@ -9,27 +9,31 @@ RSpec.describe Cell do
 
   describe '#neighbours' do
 
+    let(:neighbours) { subject.neighbours.map(&:to_a) }
+
     it 'contains the EAST cell' do
-      expect(subject.neighbours.to_a).to include([x - 1, y])
+      expect(neighbours).to include([x - 1, y])
     end
 
     it 'contains the WEST cell' do
-      expect(subject.neighbours.to_a).to include([x + 1, y])
+      expect(neighbours).to include([x + 1, y])
     end
 
     it 'contains the NORTH cell' do
-      expect(subject.neighbours.to_a).to include([x, y - 1])
+      expect(neighbours).to include([x, y - 1])
     end
 
     it 'contains the SOUTH cell' do
-      expect(subject.neighbours.to_a).to include([x, y + 1])
+      expect(neighbours).to include([x, y + 1])
     end
 
   end
 
-  describe '#connect' do
+  describe '#connect_to' do
     context 'with an adjacent cell' do
-
+      it 'connects the two cells' do
+        expect(subject.connect_to(described_class::EAST)).to be_instance_of(Cell)
+      end
     end
   end
 
