@@ -1,20 +1,21 @@
 class Amaze
 
-
-  0x1111
-
   def initialize(width, height)
     self.width  = width
     self.height = height
 
     self.start_x = rand(width)
     self.start_y = 0
+
+    self.grid  = Array.new(width) { |y| Array.new(height) { |x| Cell.new(x,y)} }
   end
 
-  def rows
+  def generate
+    visit_cell(start_x, start_y)
   end
 
   private
 
-  attr_accessor :width, :height
+  attr_accessor :width, :height, :start_x, :start_y, :grid
+
 end

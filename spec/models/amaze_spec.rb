@@ -11,8 +11,9 @@ RSpec.describe Amaze do
 
   describe 'when initialized' do
 
-    describe '#rows' do
-      it 'returns the columns' do
+    describe '#generate' do
+      it 'generate maze' do
+        pp subject.generate
       end
     end
 
