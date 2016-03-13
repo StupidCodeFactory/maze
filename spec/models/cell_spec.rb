@@ -30,6 +30,14 @@ RSpec.describe Cell do
   end
 
   describe '#connect_to' do
+    context 'with an already connected' do
+
+      before { subject.connect_to(described_class::EAST) }
+
+      it 'raise an AlreadyConnected error' do
+        expect { subject.connect_to(described_class::EAST) }.to raise_error(ArgumentError, "Cell (#{x}, #{y}) already connected")
+      end
+    end
     context 'with an adjacent cell' do
       it 'connects the two cells' do
         expect(subject.connect_to(described_class::EAST)).to be_instance_of(Cell)
