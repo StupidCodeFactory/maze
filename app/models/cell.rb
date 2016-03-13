@@ -5,18 +5,30 @@ class Cell
   NORTH = 0b0100
   SOUTH = 0b1000
 
-  def initialize(x,y)
-    self.x     = x
-    self.y     = y
-    self.walls = 0b000
+  NEIGHBOURS_SIZE = 4
+
+  def initialize(x, y, grid)
+    self.x       = x
+    self.y       = y
+    self.walls   = 0b000
+    self.visited = false
+    self.grid    = grid
   end
 
   def neighbours
     [east, west, north, south]
   end
 
+  def unvisited_random_direction
+    u = [[east, EAST], [west, WEST], [north, NORTH], [south, SOUTH]].inject([]) do |dirs, cell_and_direction|
+      dirs << cell_and_direction.last if !cell_and_direction.first.visited?
+      dirs
+    end
+    u.sample
+  end
+
   def connect_to(direction)
-    raise ArgumentError.new("Cell (#{x}, #{y}) already connected") if walls > 0
+
     case direction
     when EAST
       self.walls |= EAST
@@ -36,27 +48,36 @@ class Cell
 
   end
 
+  def visit!
+    self.visited = true
+  end
+
+  def visited?
+    visited
+  end
+
   def to_a
     [x, y]
   end
+
   private
 
-  attr_accessor :x, :y, :walls
+  attr_accessor :x, :y, :walls, :visited, :grid
 
   def east
-    @east ||= Cell.new(*east_coordinates)
+    @east ||= grid.cell_at(*east_coordinates)
   end
 
   def west
-    @west ||= Cell.new(*west_coordinates)
+    @west ||= grid.cell_at(*west_coordinates)
   end
 
   def north
-    @north ||= Cell.new(*north_coordinates)
+    @north ||= grid.cell_at(*north_coordinates)
   end
 
   def south
-    @south ||= Cell.new(*south_coordinates)
+    @south ||= grid.cell_at(*south_coordinates)
   end
 
   def east_coordinates
