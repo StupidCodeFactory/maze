@@ -29,6 +29,18 @@ RSpec.describe Cell do
 
   end
 
+  describe '#possible_moves' do
+    let(:west) { subject.connect_to(Cell::WEST) }
+
+    before do
+      subject.connect_to(Cell::EAST).visit!
+    end
+
+    it 'only returns connected cells that have not yet been visited' do
+      expect(subject.possible_moves).to eq([west])
+    end
+  end
+
   describe '#start?' do
 
     context 'being the maze starting cell' do
