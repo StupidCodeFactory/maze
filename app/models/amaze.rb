@@ -1,5 +1,3 @@
-require 'pp'
-
 class Amaze
 
   attr_accessor :start_x, :start_y, :end_x, :end_y, :width, :height, :grid
@@ -52,7 +50,6 @@ class Amaze
       visisted_cells_stack.push(new_cell)
       visit_cells(new_cell)
     else
-      # self.end_x, self.end_y = cell.to_a
       new_cell = visisted_cells_stack.pop
       visit_cells(new_cell) if new_cell
     end
