@@ -4,4 +4,5 @@ class MazeBoardsController < ApplicationController
     @maze = Amaze.new(width, height)
     @maze.generate
   end
+
 end

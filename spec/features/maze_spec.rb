@@ -1,11 +1,11 @@
 require "rails_helper"
-
-RSpec.describe Maze, type: :feature, js: true do
+# , js: true
+RSpec.describe Maze, type: :feature do
 
   describe 'create a new maze' do
     it 'creates a new maze' do
       visit root_path
-      click_on 'Create Maze Board'
+      click_on 'Create'
     end
   end
 

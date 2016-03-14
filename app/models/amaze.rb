@@ -2,7 +2,7 @@ require 'pp'
 
 class Amaze
 
-  attr_accessor :start_x, :start_y, :end_x, :end_y
+  attr_accessor :start_x, :start_y, :end_x, :end_y, :width, :height
 
   def initialize(width, height)
     self.width                = width
@@ -30,7 +30,7 @@ class Amaze
 
   private
 
-  attr_accessor :width, :height, :grid, :visisted_cells_stack
+  attr_accessor  :grid, :visisted_cells_stack
 
   def visit_cells(cell)
 
