@@ -6,9 +6,10 @@ RSpec.describe MazeBoard, type: :model do
   let(:height) { 8 }
   let(:grid) { Amaze.new(width, height) }
 
-    subject { described_class.create_from_amaze(grid) }
+  subject { described_class.create_from_amaze(grid) }
 
   it { is_expected.to have_many :maze_cells }
+
   describe '.create_from_amaze' do
 
     it 'saves the board and its cells' do

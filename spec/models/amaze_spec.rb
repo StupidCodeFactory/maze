@@ -10,7 +10,7 @@ RSpec.describe Amaze do
   end
 
   describe '.load_from_db' do
-    let(:maze_board) { puts "board"; MazeBoard.create_from_amaze(subject) }
+    let(:maze_board) { MazeBoard.create_from_amaze(subject) }
 
     before do
       subject.generate
