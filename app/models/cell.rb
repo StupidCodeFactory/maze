@@ -7,7 +7,7 @@ class Cell
 
   NEIGHBOURS_SIZE = 4
 
-  attr_accessor :walls
+  attr_accessor :walls, :x, :y
 
   def initialize(x, y, grid)
     self.x       = x
@@ -100,7 +100,7 @@ class Cell
 
   private
 
-  attr_accessor :x, :y, :visited, :grid
+  attr_accessor :grid, :visited
 
   def east
     @east ||= grid.cell_at(*east_coordinates)

@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  resource :maze, only: :show, controller: :maze
+  resource :maze_boards, only: [:create, :new, :show]
+
+  root 'maze_boards#new'
 end

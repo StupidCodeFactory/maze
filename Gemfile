@@ -53,3 +53,9 @@ group :development do
   gem 'rspec-rails'
   gem 'thin'
 end
+
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
+end
