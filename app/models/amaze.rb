@@ -4,9 +4,9 @@ class Amaze
 
   attr_accessor :start_x, :start_y, :end_x, :end_y, :width, :height
 
-  def initialize(width, height)
-    self.width                = width
-    self.height               = height
+  def initialize(w, h)
+    self.width                = w.to_i
+    self.height               = h.to_i
     self.start_x              = rand(width)
     self.start_y              = 0
     self.grid                 = Array.new(height) { |y| Array.new(width) { |x| Cell.new(x,y, self)} }

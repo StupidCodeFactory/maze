@@ -12,9 +12,8 @@ class MazeBoardsController < ApplicationController
 
   def create
     @maze_form = MazeForm.new(maze_form_params)
-    if @maze_form.valid?
-      maze = @maze_form.save
-      redirect_to maze
+    if @maze_form.save
+      redirect_to @maze_form.maze
     end
   end
 
