@@ -7,6 +7,8 @@ class Cell
 
   NEIGHBOURS_SIZE = 4
 
+  attr_accessor :walls
+
   def initialize(x, y, grid)
     self.x       = x
     self.y       = y
@@ -19,12 +21,42 @@ class Cell
     [east, west, north, south]
   end
 
+
   def unvisited_random_direction
-    u = [[east, EAST], [west, WEST], [north, NORTH], [south, SOUTH]].inject([]) do |dirs, cell_and_direction|
-      dirs << cell_and_direction.last if !cell_and_direction.first.visited?
+    [[east, EAST], [west, WEST], [north, NORTH], [south, SOUTH]].inject([]) do |dirs, cell_and_direction|
+      if (cell = cell_and_direction.first) && !cell.visited?
+        dirs << cell_and_direction.last
+      end
       dirs
+    end.sample
+  end
+
+  def to_s
+    "%.4b" % walls
+  end
+
+  def klass
+    k = []
+
+    k << 'east'  if walls & EAST  > 0
+    k << 'west'  if walls & WEST  > 0
+    k << 'north' if walls & NORTH > 0
+    k << 'south' if walls & SOUTH > 0
+
+    if start?
+      k << 'start'
+    elsif end?
+      k << 'end'
     end
-    u.sample
+    k.join(' ')
+  end
+
+  def start?
+    x == grid.start_x && y == grid.start_y
+  end
+
+  def end?
+    x == grid.end_x && y == grid.end_y
   end
 
   def connect_to(direction)
@@ -32,18 +64,24 @@ class Cell
     case direction
     when EAST
       self.walls |= EAST
+      east.walls |= WEST
+
       east
     when WEST
       self.walls |= WEST
+      west.walls |= EAST
+
       west
     when NORTH
-      self.walls |= NORTH
+      self.walls  |= NORTH
+      north.walls |= SOUTH
+
       north
     when SOUTH
-      self.walls |= SOUTH
+      self.walls  |= SOUTH
+      south.walls |= NORTH
+
       south
-    else
-      raise ArgumentError
     end
 
   end
@@ -62,7 +100,7 @@ class Cell
 
   private
 
-  attr_accessor :x, :y, :walls, :visited, :grid
+  attr_accessor :x, :y, :visited, :grid
 
   def east
     @east ||= grid.cell_at(*east_coordinates)
