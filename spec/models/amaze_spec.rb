@@ -40,7 +40,7 @@ RSpec.describe Amaze do
 
     context 'with out of bounds coordonates' do
       it 'returns nil' do
-        expect(subject.cell_at(2))
+        expect(subject.cell_at(2, 9))
       end
     end
   end

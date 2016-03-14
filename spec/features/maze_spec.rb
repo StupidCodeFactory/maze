@@ -1,5 +1,5 @@
 require "rails_helper"
-# , js: true
+
 RSpec.describe Maze, type: :feature do
 
   it 'creates and solve a maze' do
