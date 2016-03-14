@@ -9,6 +9,24 @@ RSpec.describe Amaze do
     expect { subject }.to_not raise_error
   end
 
+  describe '.load_from_db' do
+    let(:maze_board) { puts "board"; MazeBoard.create_from_amaze(subject) }
+
+    before do
+      subject.generate
+      maze_board
+    end
+
+    it 'reloads the maze' do
+      maze = described_class.load_from_db(maze_board)
+      maze.rows.each do |row|
+        row.each do |cell|
+          expect(maze_board.maze_cells.where(x: cell.x, y: cell.y, walls: cell.walls)).to be_exist
+        end
+      end
+    end
+  end
+
   describe '#cell_at' do
     it 'finds the cell at (x, y) coordinates' do
       expect(subject.cell_at(1,2).to_a).to eq([1,2])

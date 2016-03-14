@@ -2,7 +2,15 @@ require 'pp'
 
 class Amaze
 
-  attr_accessor :start_x, :start_y, :end_x, :end_y, :width, :height
+  attr_accessor :start_x, :start_y, :end_x, :end_y, :width, :height, :grid
+
+  def self.load_from_db(maze_board)
+    maze = new(maze_board.width, maze_board.height)
+    maze_board.maze_cells.each do |maze_cell|
+      maze.cell_at(maze_cell.x, maze_cell.y).walls = maze_cell.walls
+    end
+    maze
+  end
 
   def initialize(w, h)
     self.width                = w.to_i
@@ -30,7 +38,7 @@ class Amaze
 
   private
 
-  attr_accessor  :grid, :visisted_cells_stack
+  attr_accessor  :visisted_cells_stack
 
   def visit_cells(cell)
 
