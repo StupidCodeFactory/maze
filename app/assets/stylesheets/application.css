@@ -13,3 +13,33 @@
  *= require_tree .
  *= require_self
  */
+
+td {
+    min-height: 60px;
+    min-width: 60px;
+    border: 1px solid black;
+}
+
+.start {
+    background-color: yellow;
+}
+
+.end {
+    background-color: red;
+}
+
+.east {
+    border-left: none;
+}
+
+.west {
+    border-right: none;
+}
+
+.north {
+    border-top: none;
+}
+
+.south {
+    border-bottom: none;
+}

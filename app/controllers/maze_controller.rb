@@ -1,7 +1,7 @@
 class MazeController < ApplicationController
   def show
-    height = width = 12
-    @maze = Array.new(height) { Array.new(width, 0) }
-
+    height = width = 16
+    @maze = Amaze.new(width, height)
+    @maze.generate
   end
 end

@@ -1,5 +1,7 @@
-- @maze.each do |row|
-  .row
-    - row.each do |col|
-      .col-md-1.text-center{style: 'border: 1px solid black;'}
-        = col
+%table
+  %tbody
+    - @maze.rows.each_with_index do |row, i|
+      %tr
+        - row.each do |cell|
+          %td.text-center{class: cell.klass}
+            = cell
