@@ -18,4 +18,12 @@ class MazeBoard < ActiveRecord::Base
 
     board
   end
+
+  def height
+    maze_cells.maximum(:y) + 1
+  end
+
+  def width
+    maze_cells.maximum(:x) + 1
+  end
 end
