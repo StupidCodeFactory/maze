@@ -19,6 +19,12 @@ RSpec.describe Amaze do
 
     it 'reloads the maze' do
       maze = described_class.load_from_db(maze_board)
+
+      expect(maze.start_x).to eq(maze_board.start_x)
+      expect(maze.start_y).to eq(maze_board.start_y)
+      expect(maze.end_x).to   eq(maze_board.end_x)
+      expect(maze.end_y).to   eq(maze_board.end_y)
+
       maze.rows.each do |row|
         row.each do |cell|
           expect(maze_board.maze_cells.where(x: cell.x, y: cell.y, walls: cell.walls)).to be_exist

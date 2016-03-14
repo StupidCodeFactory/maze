@@ -6,6 +6,11 @@ class Amaze
 
   def self.load_from_db(maze_board)
     maze = new(maze_board.width, maze_board.height)
+    maze.start_x = maze_board.start_x
+    maze.start_y = maze_board.start_y
+    maze.end_x   = maze_board.end_x
+    maze.end_y   = maze_board.end_y
+
     maze_board.maze_cells.each do |maze_cell|
       maze.cell_at(maze_cell.x, maze_cell.y).walls = maze_cell.walls
     end
@@ -41,7 +46,6 @@ class Amaze
   attr_accessor  :visisted_cells_stack
 
   def visit_cells(cell)
-
     if direction = cell.unvisited_random_direction
       new_cell = cell.connect_to(direction)
       new_cell.visit!

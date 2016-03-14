@@ -18,7 +18,7 @@ class MazeForm
   private
 
   def maze_generator
-    @maze_generator || Amaze.new(width, height)
+    @maze_generator ||= Amaze.new(width, height)
   end
 
 end

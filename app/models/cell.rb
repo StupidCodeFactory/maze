@@ -31,10 +31,6 @@ class Cell
     end.sample
   end
 
-  def to_s
-    "%.4b" % walls
-  end
-
   def klass
     k = []
 

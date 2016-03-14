@@ -3,5 +3,5 @@
     - @maze.rows.each_with_index do |row, i|
       %tr
         - row.each do |cell|
-          %td.text-center{class: cell.klass}
-            = cell
+          %td{class: cell.klass}
+            &nbsp;
