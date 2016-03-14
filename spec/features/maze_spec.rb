@@ -2,25 +2,20 @@ require "rails_helper"
 # , js: true
 RSpec.describe Maze, type: :feature do
 
-  describe 'create a new maze' do
-    it 'creates a new maze' do
-      visit root_path
+  it 'creates and solve a maze' do
+    visit root_path
 
-      fill_in 'Width',  with: 6
-      fill_in 'Height', with: 8
-      click_on 'Create'
+    fill_in 'Width',  with: 6
+    fill_in 'Height', with: 8
+    click_on 'Create'
 
-      board = MazeBoard.first
-      board.rows.count
-      rows = page.all('tr')
-      expect(rows.size).to eq(8)
-    end
-  end
+    board = MazeBoard.first
+    board = Amaze.load_from_db(board)
 
-  describe 'solving a maze' do
+    rows = page.all('tr')
+    expect(rows.size).to eq(board.rows.count)
 
-    describe 'step by step' do
-    end
+    click_on 'Solve'
   end
 
 end

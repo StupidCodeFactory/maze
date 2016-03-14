@@ -5,8 +5,8 @@ class MazeBoardsController < ApplicationController
   end
 
   def show
-    maze = MazeBoard.includes(:maze_cells).order('maze_cells.x ASC, maze_cells.y ASC').find(params[:id])
-    @maze = Amaze.load_from_db(maze)
+    @maze_board = MazeBoard.includes(:maze_cells).order('maze_cells.x ASC, maze_cells.y ASC').find(params[:id])
+    @maze       = Amaze.load_from_db(@maze_board)
   end
 
   def create

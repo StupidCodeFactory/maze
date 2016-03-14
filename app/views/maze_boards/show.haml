@@ -5,3 +5,5 @@
         - row.each do |cell|
           %td{class: cell.klass}
             &nbsp;
+
+= button_to 'Solve', maze_board_solve_path(@maze_board), class: 'btn btn-primary'
