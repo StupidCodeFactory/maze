@@ -13,7 +13,7 @@ class MazeBoard < ActiveRecord::Base
           board.maze_cells.new(x: cell.x, y: cell.y, walls: cell.walls)
         end
       end
-      board.save!
+      board.save
     end
 
     board
